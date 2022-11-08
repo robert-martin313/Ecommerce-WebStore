@@ -8,7 +8,7 @@ async function loadNames() {
     
     var element = document.querySelector('.products');
     var newHTML;
-    html =  '<div id="main"><img id="image" src="%src%" alt=""><div class="sale__button"><span class="sale__text">Sale</span></div><i class="fa fa-eye myIcon" style="font-size:2rem"></i><i class="fa fa-shopping-cart myIcon myIcon1" style="font-size:2rem"></i><div id="category"><strong>Category:  </strong><span class="txt">%category%</span></div><div id="rating"><strong>Rating:  </strong><span class="txt">%rating%</span></div><div id="price"><strong>Price:   </strong><span class="txt">%price%</div></span></div>';
+    html =  '<div id="main"><img id="image" src="%src%" alt=""><div class="sale__button"><span class="sale__text">Sale</span></div><i class="fa fa-eye myIcon" style="font-size:2rem"></i><i class="fa fa-shopping-cart myIcon myIcon1" style="font-size:2rem"></i><div id="category" ><strong class="txt">Category:  </strong><span class="txt">%category%</span></div><div id="rating"><strong class="txt">Rating:  </strong><span class="txt">%rating%</span></div><div id="price"><strong class="txt">Price:   </strong><span class="txt">%price%</div></span></div>';
 
     newHTML = html.replace('%src%',data.image);
     newHTML = newHTML.replace('%category%',data.category);
@@ -83,5 +83,6 @@ function myFunction() {
   function Change1(){
 
     document.querySelector('.mobile__nav').classList.remove('show__nav');
+    document.querySelector('.body__move').classList.remove('abc');
   }
  

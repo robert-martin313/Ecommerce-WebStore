@@ -29,8 +29,14 @@ body{
   color:white;
   margin:0.3rem;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .fa:hover
+{
+  color:#7a1f42;
+  
+}
+.fa-facebook:hover, .fa-twitter:hover, .fa-instagram:hover
 {
   transform: scale(2);
 }
@@ -114,13 +120,13 @@ body{
 }
 .icon__toggler{
   visibility: hidden;
-  position: fixed;
+  position: absolute;
   background-color: white;
   color:#555555;
   height: 40px;
   width:40px;
   left:0;
-  top:50px;
+  top:20px;
   
 }
 
@@ -189,11 +195,20 @@ body{
 
 
 /* mediaQuery for nav */
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 420px) {
   .regular__logo{
-    
-     margin-left:-250px; 
+    position: absolute;
+     margin-left:4rem; 
+     left:0;
      padding:0;
+  }
+  .txt
+  {
+    font-size: 1rem !important;
+  }
+  #main
+  {
+    padding-bottom: 1rem;
   }
 
 }
@@ -364,7 +379,7 @@ body{
     animation: mymove 5s ;
 
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 914px) {
 
     .products{
       padding: 0 5% 0 5%;
@@ -374,12 +389,25 @@ body{
   
     }
     #main{
-      height: 55vh;
+      height: 40vh;
       width: 48%;
       margin: 1%;
+      margin-bottom: 2rem;
       position: relative;
   
      
+    }
+    .txt
+    {
+      font-size: 1.3rem;
+    }
+    .topnav__main
+    {
+      height: 60px;
+    }
+    .main__nav
+    {
+      height: 60px;
     }
     .nav a:not(:first-child) {display: none;}
     .nav a.icon {
@@ -395,7 +423,7 @@ body{
     }
     .subnav{display: none;}
   }
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 450px) {
 
     .products{
       padding: 0 5% 0 5%;
@@ -411,6 +439,10 @@ body{
       position: relative;
   
      
+    }
+    .txt
+    {
+      font-size: 1rem;
     }
 
   
