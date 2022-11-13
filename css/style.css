@@ -1,3 +1,7 @@
+/* *
+{
+  box-sizing: border-box;
+} */
 body{
    
     
@@ -53,8 +57,9 @@ body{
 /* main nav */
 
 .main__nav{
+
   display: flex;
-  position: relative;
+  position: sticky;
   color:white;
   background-color: white;
   color: #555555;
@@ -791,13 +796,15 @@ body{
   margin-top: 20px;
   margin:0 10% 0 10%;
   box-sizing: border-box;
+  
 }
 #prodetails .single-pro-image
 {
   width: 40%;
   margin-right: 50px;
-  height: 100%;
+  
 }
+
 .small-img-group
 {
   display: flex;
@@ -807,7 +814,12 @@ body{
 {
   flex-basis: 24%;
   cursor: pointer;
+  height: 1px;
 
+}
+.small-img-col img
+{
+  object-fit: contain;
 }
 #prodetails .single-pro-detials
 {
@@ -886,12 +898,15 @@ body{
   #prodetails .single-pro-image
   {
     width: 100%;
+    height: 100%;
+    
   }
+ 
   #prodetails .single-pro-detials
 {
   width: 100%;
   padding-top: 20px;
-  margin-top: 0;
+  margin-top: 53px;
 }
 
 
@@ -899,9 +914,12 @@ body{
 
 
 /* Featured Products */
+
+
 #product1 .pro-container
 {
   display: flex !important;
+  
   flex-wrap: wrap;
   width: 100%;
   margin-left: 2%;
@@ -910,41 +928,46 @@ body{
 #product1
 {
   text-align: center;
- 
-  margin-left:5%;
-  margin-right: 5%;
+  box-sizing: border-box;
+  margin-left:2rem;
+  margin-right: 2rem;
+  padding: 0px;
   font-size: large;
   margin-top: 50px;
 }
 #product1 .pro
 {
+  box-sizing: border-box;
   position: relative;
-  width: 30%;
+  width: 20%;
   min-width: 250px;
-  padding: 1rem 1rem;
+  padding: 10px 12px ;
   
+  margin:2rem;
   border: 1px solid #cce7d0;
-  border-radius: 0.5rem;
+  border-radius: 25px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-  margin: 1rem 0;
+  margin: 15px 15px;
   cursor: pointer;
   transition: 0.2s ease;
-  box-sizing: border-box;
-  height: 70vh;
-  margin:1%;
+  
+  
+  
 }
 #product1 .pro:hover
 {
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
 }
 
-#product1 .pro img
+#product1 .pro a img
 {
   width: 100%;
-  border: 1rem;
+  border-radius: 20px;
   height: 70%;
+  max-height: 60%;
+   
 }
-#product1 .pro img:hover
+#product1 .pro a img:hover
 {
   transform: max-zoom(1.1);
   overflow: hidden;
@@ -953,14 +976,19 @@ body{
 {
   text-align: start;
   padding:10px 0;
-  position: relative;
-  height: auto;
-}
-#product1 .pro .des span
+  
+}  
+#product1 .pro a 
 {
-  font-size: 1rem;
+  text-decoration: none;
 }
-#product1 .pro .des h5
+#product1 .pro a .des span
+{
+  font-size: 1rem ;
+  text-decoration: none;
+  color:#555555
+}
+#product1 .pro a .des h5
 {
   margin:0;
   padding-top: 1rem;
@@ -968,20 +996,20 @@ body{
   color: #1a1a1a;
   font-size: 1rem;
 }
-#product1 .pro .des .star i
+#product1 .pro a .des .star i
 {
   font-size: 1rem;
-  margin:0;
+  margin:0.1rem;
   padding: 0;
   color: rgba(243, 181, 25);
   margin-top:0.2rem;
 
 
 }
-#product1 .pro .des h4
+#product1 .pro a .des h4
 {
   
-  margin:0;
+  margin-top:1rem;
   font-size: 1.4rem;
   font-weight: 1rem;
   color: #088178;
@@ -992,58 +1020,40 @@ body{
 {
   /* width: 50px;
   height: 50px; */
-  line-height: 40px;
   
-  border-radius: 50px;
-  font-size: 7rem;
- 
-  
-  font-weight: 500;
-  color:#088178;
-  
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding-bottom: 0.5rem;
-  padding-right: 0.9rem;
+  font-size: 2rem;
+  background-color: #088178;
+  padding: 10px;
+  border-radius: 50%;
+  margin-left: 80%;
+  margin-bottom: 20%;
 }
 
-@media screen and (max-width: 903px) {
-
-  #product1 .pro-container
-  {
-    display: flex;
-    
-    
-  }
  
-  #product1 .pro
-  {
-    
-    width: 48%;
-    box-sizing: border-box;
-  }
-  #product1 .pro .des h4
-  {
-    font-size: 1rem;
-  }
-
-}
 @media screen and (max-width: 500px)
 {
+  *{
+    box-sizing: border-box;
+  }
   #product1 .pro-container
   {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    box-sizing: border-box;
-    margin:0;
+   
+    margin:-2rem;
+    width: 100%;
+    overflow-x: hidden;
+    
     
     
   }
   #product1 .pro
   {
-    width: 100%;
+    width: 100vw;
+    margin-left:3rem ;
+    
+    justify-content: center;
   }
   .cart
   {
@@ -1058,18 +1068,25 @@ body{
 
 @media screen and (max-width: 700px)
 {
+  #product1 
+  {
+    margin: 0;
+  }
   #product1 .pro-container
   {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
     width: 100%;
+   
+   
     
   }
   #product1 .pro
   {
-    width: 0px;
+    width: 50%;
   }
   .cart
   {
@@ -1081,7 +1098,6 @@ body{
   }
 
 }
-
 
 /* ***************************************
 ********************index css **********************
@@ -1166,4 +1182,82 @@ body{
 {
   text-align: center;
   font-size: 3rem;
+}
+
+
+/* footer */
+.section-p1
+{
+  padding: 40px 80px;
+}
+footer
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+}
+footer .col
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+footer .logo
+{
+  margin-bottom: 30px;
+}
+footer h4
+{
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+footer p
+{
+  font-size: 13px;
+  margin: 0 0 8px 0;
+}
+footer a
+{
+  font-size: 13px;
+  text-decoration: none;
+  color: #222;
+  margin-bottom: 10px;
+}
+footer .follow h4
+{
+  margin-bottom: 0px;
+  
+
+}
+footer .follow i
+{
+  padding-right: 4px;
+  margin-top: 0px;
+  cursor: pointer;
+  color: #465b52;
+  
+}
+footer .install .row img
+{
+  border: 1px solid #088178;
+  border-radius: 6px;
+}
+footer .install img
+{
+  margin:10px 0 15px 0;
+}
+footer .follow i:hover, footer a:hover
+{
+  color:#088178;
+}
+footer .copyright
+{
+  width: 100%;
+  text-align: center;
+}
+
+@media screen and  (max-width:799px) {
+  
 }

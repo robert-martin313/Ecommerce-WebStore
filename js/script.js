@@ -2,34 +2,119 @@
 // *********************************************************
 //  *********************Products Page**************************
 // *********************************************************
+function abc()
+{
+  setTimeout(loadNames, 2000);
+  
+}
+let products = [];
+let products1 = [];
 
+  
+  
+fetch('https://dummyjson.com/products?limit=100')
+.then(res => res.json())
+.then(data => {
+  
+  console.log("Array :"+Array.isArray(data))
+  products1 = data.products.map(product => {
+
+   
+    return {category: product.category, image:product.images[0],price:product.price,id:product.id,title:product.title,description:product.description }
+  }) 
+
+
+
+})
+console.log("products 1"+products1);
+
+
+
+ const searchInput = document.querySelector("[data-search]")
+ 
+  fetch('https://api.escuelajs.co/api/v1/products')
+  .then(res => res.json())
+  .then(data => {
+  
+    products = data.map(product => {
+
+      
+      
+      return {category: product.category.name, image:product.images[0],price:product.price,id:product.id,title:product.title,description:product.description }
+    }) 
+
+
+  })
+ 
+
+  
+  
 async function loadNames() {
+  var name=localStorage.getItem("firstname");
+  console.log("Wel Come and name is: "+name);
+
+  
+  document.querySelector('.header').textContent = name.toUpperCase();;
   
   console.log("Wel Come");
-  var name=localStorage.getItem("firstname");
-  document.querySelector('.header').textContent = name;
-  console.log("Wel Come");
-  for(i=8;i<=200;i++)
-  {
+  // for(i=8;i<=200;i++)
+  // {
+    // console.log("products1 "+products1);
+    // products1.forEach(product =>{
 
+    //     console.log("product is:: "+product);
+    // })
+    // console.log(products1);
+  //   products.forEach(product =>{
+
+  //   // const response = await fetch("https://api.escuelajs.co/api/v1/products/"+i);
+  //   // const data = await response.json();
+  //   // console.log(data);
+
+  //         var html,newHtml;
+  //         console.log("Inside products");
+  //         product.category = product.category.toLowerCase();
+  //         var x = name.includes(product.category)
+  //         console.log("x is: "+x+" category is: "+product.category);
+  //         if(x)
+  //         {
+
+  //         console.log("inside iffffffffffffffffffffffffffffffff");
+  //          html = '<a href="cart.html" onclick=getId('+product.id+')><div class="pro"><img id="imgUrl'+product.id+'" src="%src%" alt=""><div class="des"><span>%category%</span><h5>%brand%</h5><div class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><h4>$%price%.00</h4></div><a href="#"><i class="fa fa-shopping-cart cart" style="font-size: 1.2rem;"></i></a></div></a>'
+  //         newHtml = html.replace('%src%',product.image);
+  //         newHtml =  newHtml.replace('%category%',product.category);
+  //         newHtml = newHtml.replace('%brand%',product.title);
+  //         newHtml = newHtml.replace('%price%',product.price);
+  //         document.querySelector('.pro-container').insertAdjacentHTML('beforeend',newHtml);
+  //         }
+  // })
+
+  console.log("Engo of products1ttttttttttttttttttttttttttt");
+  products1.forEach(product =>{
+
+      
+    // const response = await fetch("https://api.escuelajs.co/api/v1/products/"+i);
+    // const data = await response.json();
+    // console.log(data);
           var html,newHtml;
-          const response = await fetch("https://api.escuelajs.co/api/v1/products/"+i);
-          const data = await response.json();
-          console.log(data);
-          var x = data.category.name.includes(name)
-          console.log("x is: "+x);
+          console.log("product 1 is: uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"+product);
+
+          var x = name.includes(product.category)
+          
+          
+          console.log("BARA X IS is: "+x+" and product cat is: "+product.category);
           if(x)
           {
-
+            
           console.log("inside iffffffffffffffffffffffffffffffff");
-           html = '<a href="cart.html" onclick=getId('+i+')><div class="pro"><img id="imgUrl'+i+'" src="%src%" alt=""><div class="des"><span>%category%</span><h5>%brand%</h5><div class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><h4>$%price%.00</h4></div><a href="#"><i class="fa fa-shopping-cart cart" style="font-size: 1.2rem;"></i></a></div></a>'
-          newHtml = html.replace('%src%',data.images[0]);
-          newHtml =  newHtml.replace('%category%',data.category.name);
-          newHtml = newHtml.replace('%brand%',data.title);
-          newHtml = newHtml.replace('%price%',data.price);
+           html = '<a href="cart.html" onclick=getId('+product.id+')><div class="pro"><img id="imgUrl'+product.id+'" src="%src%" alt=""><div class="des"><span>%category%</span><h5>%brand%</h5><div class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><h4>$%price%.00</h4></div><a href="#"><i class="fa fa-shopping-cart cart" style="font-size: 1.2rem;"></i></a></div></a>'
+          newHtml = html.replace('%src%',product.image);
+          newHtml =  newHtml.replace('%category%',product.category);
+          newHtml = newHtml.replace('%brand%',product.title);
+          newHtml = newHtml.replace('%price%',product.price);
           document.querySelector('.pro-container').insertAdjacentHTML('beforeend',newHtml);
           }
-  }
+  })
   }
 
   
@@ -82,9 +167,9 @@ async function loadNames() {
     var x=0;
     async function showSearchBar()
     {
-      const response =  await fetch("https://api.escuelajs.co/api/v1/categories");
-const beta =  await response.json();
-console.log(beta);
+//       const response =  await fetch("https://api.escuelajs.co/api/v1/products");
+// const beta =  await response.json();
+// console.log(beta);
       document.querySelector('.search__bar').classList.add('showSearchbar');
      x++;
     }
@@ -114,10 +199,9 @@ console.log(beta);
     }
 }
 
-let products = [];
- const searchInput = document.querySelector("[data-search]")
+
  searchInput.addEventListener("input",e => {
-  const value = e.target.value;
+  var value = e.target.value;
   
    //e.firstElementChild can be used.
    var child = e.lastElementChild;
@@ -149,9 +233,11 @@ let products = [];
       
      console.log(product);
 
+      value = value.toLowerCase();
+      product_category = product.category;
+      product_category = product_category.toLowerCase();
 
-
-      if(product.category.includes(value))
+      if(product_category.includes(value))
       {
         
         
@@ -177,24 +263,67 @@ let products = [];
       
     }
    
-  })
+  }) //yaha tak
+  products1.forEach(product => {
+    
+    
+    console.log("inside for each");
+   
+    
+    if(value==="")
+    {
+      
+      document.querySelector('.search__bar').classList.remove('search__active');
+    }
+    else if(value!=null || value!="" )
+    {
+     
+      document.querySelector('.search__bar').classList.add('search__active');
+
+      var e = document.querySelector(".products__show");
+        
+     
+     
+      
+      
+     console.log(product);
+
+      value = value.toLowerCase();
+      product_category = product.category;
+      product_category = product_category.toLowerCase();
+
+      if(product_category.includes(value))
+      {
+        
+        
+        var element = document.querySelector('.products__show');
+        var newHTML;
+        html =  '<div id="main" class="main1" href="cart.html" onclick="cart(%pid%)"><a href="cart.html" ><p style="display:none class="pid"></p><img id="image" src="%src%" alt="" ><div class="sale__button"><span class="sale__text">Sale</span></div><i class="fa fa-eye myIcon" style="font-size:2rem"></i><i class="fa fa-shopping-cart myIcon myIcon1" style="font-size:2rem"></i><div id="category" ><strong class="txt">Category:  </strong><span class="txt">%category%</span></div><div id="rating"><strong class="txt">Rating:  </strong><span class="txt">%rating%</span></div><div id="price"><strong class="txt">Price:   </strong><span class="txt">%price%</div></span> </a></div>';
+    
+        newHTML = html.replace('%src%',product.image);
+        newHTML = newHTML.replace('%pid%',product.id);
+        newHTML = newHTML.replace('%category%',product.category);
+        newHTML = newHTML.replace('%rating%',product.rating+"("+product.count+")");
+        newHTML = newHTML.replace('%price%',product.price);
+    
+        document.querySelector('.products__show').insertAdjacentHTML('beforeend',newHTML);
+      }
+      
+    }
+    
+    else
+    {
+      console.log("else");
+      
+      
+    }
+   
+  }) //yaha tak
 
  })
 
 
- fetch('https://api.escuelajs.co/api/v1/products')
-  .then(res => res.json())
-  .then(data => {
-    console.log("mapping");
-    products = data.map(product => {
-
-      console.log("REturneddddddddddddddddd");
-      return {category: product.category.name, image:product.images[0],price:product.price,id:product.id }
-    }) 
-
-
-  })
-
+ 
 
   // async function showProducts(value)
   // {
@@ -390,6 +519,7 @@ function getId(id)
 {
   console.log(id);
   localStorage.setItem("pid", id);
+  localStorage.setItem("category", cat);
   console.log("description taken");
   
 }
@@ -403,17 +533,18 @@ async function setCart()
   console.log("Wel Come");
  
           var html,newHtml;
-          const response = await fetch("https://api.escuelajs.co/api/v1/products/"+name);
+          // const response = await fetch("https://api.escuelajs.co/api/v1/products/"+name);
+          const response = await fetch("https://dummyjson.com/products/"+name);
           const data = await response.json();
          console.log(data);
 
           
-          html = '<div class="single-pro-image"><img src="%mainImage%" width="100%" id="MainImg" alt=""><div class="small-img-group"><div class="small-img-col"><img src="%small1%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small2%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small3%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small4%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div></div></div><div class="single-pro-detials"><h6>Home / T-shirts</h6><h5>%title%</h5><h2>$%price%.00</h2><select ><option>Select Size</option><option>XL</option><option>XXL</option><option>small</option><option>large</option></select><input type="number" value="1" min="1"><button>Add To Cart</button><h4>Product Details</h4><span>%des%</span></div>'
+          html = '<div class="single-pro-image"><img src="%mainImage%" width="100%" id="MainImg" alt=""><div class="small-img-group"><div class="small-img-col"><img src="%small1%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small2%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small3%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small4%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div></div></div><div class="single-pro-detials"><h6>Home / T-shirts</h6><h5>%title%</h5><h2>$%price%.00</h2><select ><option>Select Size</option><option>XL</option><option>XXL</option><option>small</option><option>large</option></select><input type="number" value="1" min="1" oninput="myFunction()"><button>Add To Cart</button><h4>Product Details</h4><span>%des%</span></div>'
           newHtml = html.replace('%mainImage%',data.images[0]);
-          newHtml = newHtml.replace('%small1%',data.images[1]);
-          newHtml = newHtml.replace('%small2%',data.images[2]);
-          newHtml = newHtml.replace('%small3%',data.images[0]);
-          newHtml = newHtml.replace('%small4%',data.images[1]);
+          newHtml = newHtml.replace('%small1%',data.images[0]);
+          newHtml = newHtml.replace('%small2%',data.images[1]);
+          newHtml = newHtml.replace('%small3%',data.images[2]);
+          newHtml = newHtml.replace('%small4%',data.images[3]);
           newHtml = newHtml.replace('%title%',data.title);
           newHtml = newHtml.replace('%price%',data.price);
           newHtml = newHtml.replace('%des%',data.description);
@@ -422,4 +553,9 @@ async function setCart()
           document.querySelector('#prodetails').insertAdjacentHTML('beforeend',newHtml);
  
 
+}
+
+function myFunction()
+{
+  console.log("myFuncton called");
 }

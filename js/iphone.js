@@ -1,35 +1,46 @@
 
-
+//  fetch('https://dummyjson.com/products')
+//  .then(res => res.json())
+//  .then(json => console.log(json))
+fetch('https://dummyjson.com/products/categories')
+.then(res => res.json())
+.then(console.log);
 async function loadNames() {
-    for(i=1;i<=10;i++)
+  
+  // fetch('https://dummyjson.com/products')
+  // .then(res => res.json())
+  // .then(json => console.log(json))
+  // fetch('https://dummyjson.com/products')
+  // .then(res => res.json())
+  // .then(json => console.log(json))
+  // console.log("othy");
+    for(i=1;i<=50;i++)
     {
+      console.log("inside for");
         fetch('https://dummyjson.com/products/1')
   .then(res => res.json())
   .then(json => console.log(json))
 
-    console.log(i);
+    
     const response = await fetch("https://dummyjson.com/products/"+i);
     const data = await response.json();
     
     var element = document.querySelector('.iphone');
     var newHTML;
     html =  '<div id="main"><img id="image" src="%src%" alt=""><div class="sale__button"><span class="sale__text">Sale</span></div><i class="fa fa-eye myIcon" style="font-size:2rem"></i><i class="fa fa-shopping-cart myIcon myIcon1" style="font-size:2rem"></i><div id="category" ><strong class="txt">Category:  </strong><span class="txt">%category%</span></div><div id="rating"><strong class="txt">Rating:  </strong><span class="txt">%rating%</span></div><div id="price"><strong class="txt">Price:   </strong><span class="txt">%price%</div></span></div>';
-
-    newHTML = html.replace('%src%',data.images[0]);
+    console.log(data.images[4]);
+    newHTML = html.replace('%src%',data.images[4]);
     newHTML = newHTML.replace('%category%',data.category);
     newHTML = newHTML.replace('%rating%',data.rating.rate+"("+data.rating.count+")");
     newHTML = newHTML.replace('%price%',data.price);
 
     document.querySelector('.iphone').insertAdjacentHTML('beforeend',newHTML);
     }
-    loadNames1();
-  }
-  async function loadNames1() {
     for(i=51;i<=100;i++)
     {
         
 
-      console.log("inside loadNames1 "+i);
+     
     const response = await fetch("https://dummyjson.com/products/"+i);
     const data = await response.json();
     
@@ -44,6 +55,11 @@ async function loadNames() {
 
     document.querySelector('.iphone').insertAdjacentHTML('beforeend',newHTML);
     }
+    console.log("loop over");
+    
+  }
+  async function loadNames1() {
+    
   }
   loadNames();
   
