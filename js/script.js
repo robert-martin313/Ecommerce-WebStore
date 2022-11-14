@@ -120,40 +120,7 @@ async function loadNames() {
   
 
   
-  // cart
   
-  // console.log(p);
-  // console.log("myValue:"+myValue);
-  // async function loadCart()
-  // {
-    
-  //   const val=myValue;
-  //    console.log("Runing");
-
-    
-    
-  //     console.log("my value is: "+val);
-  //    const response = await fetch("https://fakestoreapi.com/products/1");
-  //     const data = await response.json();
-    
-     
-  //    var element = document.querySelector('.cart-product');
-  //    var newHTML;
-    
-  //    html =  '<div id="main" href="cart.html" onclick="cart(%pid%)"><a href="cart.html"><p style="display:none class="pid"></p><img id="cart-image" src="%src%" alt="" ><div class="sale__button"><span class="sale__text">Sale</span></div><i class="fa fa-eye myIcon" style="font-size:2rem"></i><i class="fa fa-shopping-cart myIcon myIcon1" style="font-size:2rem"></i><div id="cart-category" ><strong class="txt">Category:  </strong><span class="txt">%category%</span></div><div id="cart-rating"><strong class="txt">Rating:  </strong><span class="txt">%rating%</span></div><div id="cart-price"><strong class="txt">Price:   </strong><span class="txt">%price%</div></span> </a></div>';
-    
-     
-  //    newHTML = html.replace('%src%',data.image);
-  //    newHTML = newHTML.replace('%pid%',data.id);
-  //    newHTML = newHTML.replace('%category%',data.category);
-  //    newHTML = newHTML.replace('%rating%',data.rating.rate+"("+data.rating.count+")");
-  //    newHTML = newHTML.replace('%price%',data.price);
-  //   console.log("Running");
-  //    document.querySelector('.cart-product').insertAdjacentHTML('beforeend',newHTML);
-   
-     
-  //   console.log("inserted");
-  // }
 
       function display()
       {
@@ -167,9 +134,7 @@ async function loadNames() {
     var x=0;
     async function showSearchBar()
     {
-//       const response =  await fetch("https://api.escuelajs.co/api/v1/products");
-// const beta =  await response.json();
-// console.log(beta);
+
       document.querySelector('.search__bar').classList.add('showSearchbar');
      x++;
     }
@@ -187,12 +152,7 @@ async function loadNames() {
     
    
 
-  //   document.getElementById("searchbar").addEventListener("keypress", function (event) {
-  //     if (event.key === "Enter") {
-  //        // the code you want to run
-  //        console.log("OKK");
-  //     }
-  // })
+  
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -382,13 +342,7 @@ async function loadNames() {
   
  
   
-//nav toggler  
-// const collapsibles = document.querySelectorAll(".collapsible");
-// collapsibles.forEach((item) =>
-//   item.addEventListener("click", function () {
-//     this.classList.toggle("collapsible--expanded");
-//   })
-// );
+
 
 /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
 function myFunction() {
@@ -423,10 +377,7 @@ function myFunction() {
 // *********************************************************
 
 async function loadProducts(){
-  // console.log("isnide function");
-  // const response = await fetch("https://api.escuelajs.co/api/v1/products/8");
-  //         const data = await response.json();
-  //         console.log(data);
+     console.log(data);
  
   console.log("no data");
   for(i=8;i<=200;i++)
@@ -434,7 +385,7 @@ async function loadProducts(){
           var html,newHtml;
           const response = await fetch("https://api.escuelajs.co/api/v1/products/"+i);
           const data = await response.json();
-          console.log(data);
+         
 
 
            html = '<a href=cart.html"><div class="pro" onclick=getProductDesc('+i+')>< <img id="imgUrl'+i+'" src="%src%" alt=""><div class="des"><span>%category%</span><h5>%brand%</h5><div class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><h4>$%price%.00</h4></div><a href="#"><i class="fa fa-shopping-cart cart" style="font-size: 1.2rem;"></i></a></div></a>';
@@ -453,34 +404,64 @@ async function loadProducts(){
 async function changeImage(param){
   
   document.querySelector('#MainImg').src = param.src;
+ };
+
+//  cart
+function showCart()
+{
+  var element = document.querySelector('.shopping-cart')
+  console.log("show cart");
+  document.querySelector('.shopping-cart').classList.add('show__cart');
+  var saved = localStorage.getItem('wishlistItems');
+  console.log(saved);
+  document.querySelector('.shopping-cart').innerHTML = saved;
+
+  // for (let i = 0; i < nodes.length; i++) {
+  //   var name=localStorage.getItem("nodes"+[i]+"");
+  //  console.log(name);
+  // }
+  
+
+}
+function hideCart()
+{
+  console.log("hide cart");
+  document.querySelector('.shopping-cart').classList.remove('show__cart');
+}
+function addToCart()
+{
  
-  };
+  var p = document.querySelector('.value').value;
+  console.log("pp is: "+p)
+  var saved = localStorage.getItem('wishlistItems');
+  console.log(saved);
+  document.querySelector('.shopping-cart').innerHTML = saved;
+  var html,newHtml;
+  console.log("add to cart");
+  var name=localStorage.getItem("pid");
+  console.log(products1[name-1]);
+  var element = document.querySelector('.shopping-cart');
+   html = '<div class="pro" onclick="cart(2)"><img src="%image%" alt=""><div class="des"><span>%brand%</span><h5>%title%</h5><div class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><h4>$%price%.00</h4><h4 class="totalPrice"><strong>Total: </strong>$%total%.00</h4></div></div>';
+  newHtml = html.replace('%image%',products1[name-1].image);
+  newHtml = newHtml.replace('%brand%',products1[name-1].category);
+  newHtml = newHtml.replace('%title%',products1[name-1].title);
+  newHtml = newHtml.replace('%price%',products1[name-1].price);
+  newHtml = newHtml.replace('%total%',products1[name-1].price * p);
 
-  // function changeBg(param)
-  // {
-  //     var x = param.src;
-  //     console.log(x);
-  //     const myArray = x.split("1.jpg");
-  //     const p = myArray[0].split("/");
-  //     console.log(p[6]);
-  //     var url = myArray[0]+"2.jpg"
-      
-  //     document.querySelector('#imgUrl'+p[6]).src = url;
-  // }
-  // function changeBack(param)
-  // {
-      
-  //     var x = param.src;
-  //     console.log(x);
-  //     const myArray = x.split("2.jpg");
-  //     const p = myArray[0].split("/");
-  //     console.log(p[6]);
-  //     var url = myArray[0]+"1.jpg";
-  //     console.log(url);
-      
-  //     document.querySelector('#imgUrl'+p[6]).src = url;
-  // }
 
+  nodes = [];
+  element.insertAdjacentHTML('beforeend',newHtml);
+  console.log("collect: "+document.querySelector('.shopping-cart').getElementsByTagName("h4"))
+  var nodes = document.querySelector('.shopping-cart');
+  localStorage.setItem('wishlistItems', nodes.innerHTML);
+  
+  
+ 
+
+}
+
+
+  
 
 
 
@@ -539,7 +520,7 @@ async function setCart()
          console.log(data);
 
           
-          html = '<div class="single-pro-image"><img src="%mainImage%" width="100%" id="MainImg" alt=""><div class="small-img-group"><div class="small-img-col"><img src="%small1%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small2%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small3%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small4%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div></div></div><div class="single-pro-detials"><h6>Home / T-shirts</h6><h5>%title%</h5><h2>$%price%.00</h2><select ><option>Select Size</option><option>XL</option><option>XXL</option><option>small</option><option>large</option></select><input type="number" value="1" min="1" oninput="myFunction()"><button>Add To Cart</button><h4>Product Details</h4><span>%des%</span></div>'
+          html = '<div class="single-pro-image"><img src="%mainImage%" width="100%" id="MainImg" alt=""><div class="small-img-group"><div class="small-img-col"><img src="%small1%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small2%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small3%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div><div class="small-img-col"><img src="%small4%" alt="" width="100%" class="small-img" onclick="changeImage(this)"></div></div></div><div class="single-pro-detials"><h6>Home / T-shirts</h6><h5>%title%</h5><h2>$%price%.00</h2><select ><option>Select Size</option><option>XL</option><option>XXL</option><option>small</option><option>large</option></select><input type="number" value="1" min="1" class="value"><button onclick="addToCart()">Add To Cart</button><h4>Product Details</h4><span>%des%</span></div>'
           newHtml = html.replace('%mainImage%',data.images[0]);
           newHtml = newHtml.replace('%small1%',data.images[0]);
           newHtml = newHtml.replace('%small2%',data.images[1]);
